@@ -254,7 +254,8 @@ def do_train(args):
         convert_example,
         tokenizer=tokenizer,
         label_list=train_ds.label_list,
-        max_seq_length=args.max_seq_length)
+        max_seq_length=args.max_seq_length,
+        is_test=True)
     train_ds = train_ds.map(trans_func, lazy=True)
     train_batch_sampler = paddle.io.DistributedBatchSampler(
         train_ds, batch_size=args.batch_size, shuffle=True)
